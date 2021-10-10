@@ -1,6 +1,7 @@
 package com.uhs.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Product implements Serializable{
 	private static final long serialVersionUID = -4274700572038677000L;
@@ -12,8 +13,26 @@ public class Product implements Serializable{
 	private String manufacturer;
 	private String category;
 	private Long unitsInstock;
-	private String condition;
+	private String pcondition;
+	private Date createDate;
+	private Date modifyDate;
 	
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
 	public Product() {
 		super();
 	}
@@ -66,12 +85,14 @@ public class Product implements Serializable{
 	public void setUnitsInstock(Long unitsInstock) {
 		this.unitsInstock = unitsInstock;
 	}
-	public String getCondition() {
-		return condition;
+	public String getPcondition() {
+		return pcondition;
 	}
-	public void setCondition(String condition) {
-		this.condition = condition;
+
+	public void setPcondition(String pcondition) {
+		this.pcondition = pcondition;
 	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

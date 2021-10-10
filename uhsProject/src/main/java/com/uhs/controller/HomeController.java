@@ -1,21 +1,25 @@
 package com.uhs.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.uhs.dao.ProductRepository;
 import com.uhs.dto.Product;
+import com.uhs.service.productService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	@Autowired
+	productService productService;
+	
 	@GetMapping("/")
 	public String Home(Model model) {		
 		String greeting = "Welcome to Web Sopping Mall";
@@ -37,11 +41,16 @@ public class HomeController {
 	@GetMapping("/product")
 	public String product(Model model) {
 		
-		ArrayList<Product> listOfProducts = ProductRepository.ListOfProducts();
+		List<Product> listOfProducts = productService.getProductAll();
 		
 		model.addAttribute("listOfProducts", listOfProducts);
 		
 		return "product.jsp";
+	}
+	
+	@GetMapping("/registration")
+	public String registration() {
+		return "registPage.jsp";
 	}
 	
 	@GetMapping("/index")

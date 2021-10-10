@@ -6,19 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-<title>Welcome</title>
+<title>홈</title>
 </head>
 <body>
-	<nav class = "navbar navbar-expand navbar-dark bg-dark">
-		<div class = "container">
-			<div class = "navbar-header">
-				<a class = "navbar-header" href="./">Home &nbsp;&nbsp;</a>	
-				<!-- a class = "navbar-header" href="#" id="loginInfoShow" style="display:none;">이유환님, 반갑습니다. &nbsp;&nbsp;</a>	
-				<a class = "navbar-header" href="#" onclick="loginBtn();" id="loginMenu">로그인</a> -->
-				<a class = "navbar-header" href="./product" id="loginMenu">Product</a>			
-			</div>			
-		</div>
-	</nav>
+	<jsp:include page="menu.jsp" />
 	
 	<div class="jumbotron">
 		<div class="container">
