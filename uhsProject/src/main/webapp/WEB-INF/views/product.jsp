@@ -27,10 +27,14 @@
 						<div class="row" align = "center">
 							<c:forEach items="${listOfProducts	}" var="data">
 								<div class="col-md-4">
-									<p>
+									<p>		
+										<c:if test="${data.imgName != null }">
+											<img src="./resources/img/${data.imgName}" style="width: 100%">
+										</c:if>								
 										<h3>${data.pname}</h3>
 										${data.description } <br>
-										${data.unitPrice } 원
+										${data.unitPrice } 원 <br>
+										<a href="./productInfo?id=${data.id}" class="btn btn-info">상품 정보</a>
 									</p>
 								</div>
 							</c:forEach>

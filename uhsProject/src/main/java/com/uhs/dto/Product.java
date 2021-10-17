@@ -6,6 +6,7 @@ import java.util.Date;
 public class Product implements Serializable{
 	private static final long serialVersionUID = -4274700572038677000L;
 	
+	private Long Id;
 	private String productId;
 	private String pname;
 	private Integer unitPrice;
@@ -14,8 +15,17 @@ public class Product implements Serializable{
 	private String category;
 	private Long unitsInstock;
 	private String pcondition;
+	private String imgName;
 	private Date createDate;
 	private Date modifyDate;
+	
+	public Long getId() {
+		return Id;
+	}
+	
+	public void setId(Long id) {
+		Id = id;
+	}
 	
 	public Date getCreateDate() {
 		return createDate;
@@ -95,5 +105,12 @@ public class Product implements Serializable{
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
 	}
 }

@@ -71,6 +71,12 @@
 			</div>
 		</div>
 		<div class="form-group row">
+			<label class="col-sm-2">제품 이미지</label>
+			<div class="col-sm-5">
+				<input type="file" id="fileInput">
+			</div>
+		</div>
+		<div class="form-group row">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input type="button" id="registBtn" class="btn btn-primary" value="등록" onclick="registProduct();">
 			</div>
@@ -93,22 +99,23 @@
 	    let category = document.querySelector("#productCategory").value;
 	    let unitsInstock = document.querySelector("#productStock").value;
 	    let pcondition = document.querySelector("input[name='productCondition']:checked").value;
-		
+	    let file = document.querySelector('input[type="file"]').files;
+	    	    
+	    const formData = new FormData();
+	    formData.append("productId", productId);
+	    formData.append("pname", pname);
+	    formData.append("unitPrice", unitPrice);
+	    formData.append("description", description);
+	    formData.append("manufacturer", manufacturer);
+	    formData.append("category", category);
+	    formData.append("unitsInstock", unitsInstock);
+	    formData.append("pcondition", pcondition);
+	    formData.append("file", file[0]);
+    
 		fetch('./registration', {
 		    method: 'post',
-		    headers: {
-		        "Content-Type": "application/json",
-		    },
-		    body: JSON.stringify({
-		    	productId: productId,
-			    pname: pname,
-			    unitPrice: unitPrice,
-			    description: description,
-			    manufacturer: manufacturer,
-			    category: category,
-			    unitsInstock: unitsInstock,
-			    pcondition: pcondition
-		    })
+		    body: formData,
+		    headers: {}
 		  })
 		  .then((response) => {
 			  location.href = response.url;

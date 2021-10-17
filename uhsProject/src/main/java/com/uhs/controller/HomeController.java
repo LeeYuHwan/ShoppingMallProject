@@ -48,6 +48,23 @@ public class HomeController {
 		return "product.jsp";
 	}
 	
+	@GetMapping("/productInfo")
+	public String productInfo(Model model, long id) {
+				
+		List<Product> listOfProducts = productService.getProductChoice(id);
+		
+		model.addAttribute("pname", listOfProducts.get(0).getPname());
+		model.addAttribute("description", listOfProducts.get(0).getDescription());
+		model.addAttribute("productId", listOfProducts.get(0).getProductId());
+		model.addAttribute("manufacturer", listOfProducts.get(0).getManufacturer());
+		model.addAttribute("category", listOfProducts.get(0).getCategory());
+		model.addAttribute("unitsInstock", listOfProducts.get(0).getUnitsInstock());
+		model.addAttribute("unitPrice", listOfProducts.get(0).getUnitPrice());
+		model.addAttribute("imgName", listOfProducts.get(0).getImgName());
+		
+		return "productInfo.jsp";
+	}
+	
 	@GetMapping("/registration")
 	public String registration() {
 		return "registPage.jsp";

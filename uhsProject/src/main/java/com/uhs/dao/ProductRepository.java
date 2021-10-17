@@ -1,9 +1,11 @@
 package com.uhs.dao;
 
 import static com.uhs.dao.productSql.SELECT_PRODUCT_ALL;
+import static com.uhs.dao.productSql.SELECT_PRODUCT_INFO;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -34,7 +36,12 @@ public class ProductRepository {
 	public List<Product> selectProductAll(){
 		
 		return jdbc.query(SELECT_PRODUCT_ALL, Collections.emptyMap(), rowMapper);		
-	}	
+	}
+	
+	public List<Product> selectProductChoice(long choiceId) {
+		Map<String, ?> params = Collections.singletonMap("choiceId", choiceId);
+		return jdbc.query(SELECT_PRODUCT_INFO, params, rowMapper);
+	}
 	
 	public long insert(Product product) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(product);

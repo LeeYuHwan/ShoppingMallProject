@@ -24,6 +24,12 @@ public class productServiceImpl implements productService {
 	}
 	
 	@Override
+	public List<Product> getProductChoice(long choiceId) {
+		List<Product> list = productDao.selectProductChoice(choiceId);
+		return list;
+	}
+	
+	@Override
 	@Transactional(readOnly = false)
 	public Product addProductInfo(Product product) {
 		product.setModifyDate(new Date());
