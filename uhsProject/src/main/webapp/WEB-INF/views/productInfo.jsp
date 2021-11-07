@@ -27,14 +27,15 @@
 				</div>
 			</c:if>	
 			<div class="col-md-6">
-				<h3>${pname}</h3>
+				<h3><a id="pname">${pname}</a></h3>
 				<p>${description}</p>
 				<p><b>상품 코드 : </b><span class="badge badge-danger">${productId}</span></p>
 				<p><b>제조사 : </b>${manufacturer}</p>
 				<p><b>분류 : </b>${category}</p>
 				<p><b>재고 수 : </b>${unitsInstock}</p>
-				<h4>${unitPrice}원</h4>
+				<h4><a id="pPrice">${unitPrice}</a>원</h4>
 				<p><a href="#" class="btn btn-info">상품 주문 &raquo;</a>
+				   <a onclick="addToCart();" class="btn btn-warning">장바구니 &raquo;</a>
 				   <a href="./product" class="btn btn-secondary">상품 목록 &raquo;</a></p>
 			</div>
 		</div>
@@ -45,3 +46,27 @@
 	</footer>
 </body>
 </html>
+
+<script type="text/javascript">
+	function addToCart(){
+		if(confirm("상품을 장바구니에 추가하시겠습니까?")){
+			let id = ${id};
+			let name = document.querySelector("#pname").text;
+			let price = document.querySelector("#pPrice").text;
+			
+		    const formData = new FormData();
+		    formData.append("id", id);
+		    formData.append("name", name);
+		    formData.append("price", price);
+		    
+			fetch('./api/cart', {
+			    method: 'post',
+			    body: formData,
+			    headers: {}
+			  })
+			  .then((response) => {
+				  location.href = "./cart";
+			  })
+		}			
+	}
+</script>
