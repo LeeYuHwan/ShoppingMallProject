@@ -34,7 +34,7 @@
 				<p><b>분류 : </b>${category}</p>
 				<p><b>재고 수 : </b>${unitsInstock}</p>
 				<h4><a id="pPrice">${unitPrice}</a>원</h4>
-				<p><a href="#" class="btn btn-info">상품 주문 &raquo;</a>
+				<p><a href="./shippingInfo?id=${id}" class="btn btn-info">상품 주문 &raquo;</a>
 				   <a onclick="addToCart();" class="btn btn-warning">장바구니 &raquo;</a>
 				   <a href="./product" class="btn btn-secondary">상품 목록 &raquo;</a></p>
 			</div>

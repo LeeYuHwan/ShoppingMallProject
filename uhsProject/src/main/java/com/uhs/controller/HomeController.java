@@ -67,27 +67,33 @@ public class HomeController {
 	}
 	
 	@GetMapping("/cart")
-	public String cart() {
-				
-		/*
-		 * List<Product> listOfProducts = productService.getProductChoice(id);
-		 * 
-		 * model.addAttribute("pname", listOfProducts.get(0).getPname());
-		 * model.addAttribute("description", listOfProducts.get(0).getDescription());
-		 * model.addAttribute("productId", listOfProducts.get(0).getProductId());
-		 * model.addAttribute("manufacturer", listOfProducts.get(0).getManufacturer());
-		 * model.addAttribute("category", listOfProducts.get(0).getCategory());
-		 * model.addAttribute("unitsInstock", listOfProducts.get(0).getUnitsInstock());
-		 * model.addAttribute("unitPrice", listOfProducts.get(0).getUnitPrice());
-		 * model.addAttribute("imgName", listOfProducts.get(0).getImgName());
-		 */
-		
+	public String cart() {		
 		return "cart.jsp";
 	}
 	
 	@GetMapping("/registration")
 	public String registration() {
 		return "registPage.jsp";
+	}
+	
+	@GetMapping("/shippingInfo")
+	public String shippingInfo() {
+		return "shippingInfo.jsp";
+	}
+	
+	@GetMapping("/orderCancel")
+	public String orderCancel() {
+		return "orderCancel.jsp";
+	}
+	
+	@GetMapping("/orderComplete")
+	public String orderComplete() {
+		return "orderComplete.jsp";
+	}
+	
+	@GetMapping("/error")
+	public String error() {
+		return "error.jsp";
 	}
 	
 	@GetMapping("/index")

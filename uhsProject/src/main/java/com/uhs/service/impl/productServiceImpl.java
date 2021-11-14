@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.uhs.dao.ProductRepository;
+import com.uhs.dao.ordererRepository;
 import com.uhs.dto.Product;
+import com.uhs.dto.Shipping;
 import com.uhs.service.productService;
 
 @Service
@@ -16,6 +18,8 @@ public class productServiceImpl implements productService {
 
 	@Autowired
 	ProductRepository productDao;
+	@Autowired
+	ordererRepository orderDao;
 	
 	@Override
 	public List<Product> getProductAll() {
@@ -39,4 +43,13 @@ public class productServiceImpl implements productService {
 		return product;
 	}
 
+	@Override
+	@Transactional(readOnly = false)
+	public Shipping addShippingInfo(Shipping shipping) {
+		shipping.setModifyDate(new Date());
+		shipping.setCreateDate(new Date());
+		Long id = orderDao.insert(shipping);
+
+		return shipping;
+	}
 }

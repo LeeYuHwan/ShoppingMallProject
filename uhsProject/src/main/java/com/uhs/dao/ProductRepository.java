@@ -33,8 +33,7 @@ public class ProductRepository {
 				.usingGeneratedKeyColumns("id");
 	}
 	
-	public List<Product> selectProductAll(){
-		
+	public List<Product> selectProductAll(){		
 		return jdbc.query(SELECT_PRODUCT_ALL, Collections.emptyMap(), rowMapper);		
 	}
 	
