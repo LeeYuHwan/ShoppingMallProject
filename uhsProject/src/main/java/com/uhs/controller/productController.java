@@ -1,8 +1,5 @@
 package com.uhs.controller;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.uhs.dto.Product;
+import com.uhs.factory.productFactory;
 import com.uhs.service.productService;
 
 @Controller
@@ -18,50 +16,20 @@ public class productController {
 	productService productService;
 	
 	@PostMapping(path = "/registration")
-	public String registration(MultipartHttpServletRequest request) {	
+	public String registration(MultipartHttpServletRequest request) {				
+		String returnUrl = "";		
+		try {					
+			String productId = request.getParameter("productId");
+			String pname = request.getParameter("pname");
+			int unitPrice = Integer.parseInt(request.getParameter("unitPrice"));
+			String description = request.getParameter("description");
+			String manufacturer = request.getParameter("manufacturer");
+			String category = request.getParameter("category");
+			long unitsInstock = Long.parseLong(request.getParameter("unitsInstock")); 
+			String pcondition = request.getParameter("pcondition");
+			MultipartFile file = request.getFile("file");
 			
-		System.out.println("상품 insert 실행 : " + request);				
-		
-		Product product = new Product();
-		MultipartFile file = request.getFile("file");
-		
-		String returnUrl = "";
-		
-		try {
-			if(!file.isEmpty()) {
-				System.out.println("파일 이름 : " + file.getOriginalFilename());
-				System.out.println("파일 크기 : " + file.getSize());
-				try(
-			    		// 맥일 경우 
-			            //FileOutputStream fos = new FileOutputStream("C:/Users/이유환/eclipse-workspace/uhsProject/src/main/webapp/resources/img/" + file.getOriginalFilename());
-			            // 윈도우일 경우
-			            FileOutputStream fos = new FileOutputStream("C:/Users/이유환/eclipse-workspace/uhsProject/src/main/webapp/resources/img/" + file.getOriginalFilename());
-			            InputStream is = file.getInputStream();
-			    ){
-			        	int readCount = 0;
-			        	byte[] buffer = new byte[1024];
-			        	while((readCount = is.read(buffer)) != -1){
-			                fos.write(buffer,0,readCount);
-			            }
-			    }catch(Exception ex){
-			        throw new RuntimeException("file Save Error");
-			    }
-				product.setImgName(file.getOriginalFilename());
-			}
-			else {
-				System.out.println("이미지 없이 comment 삽입");
-				product.setImgName(null);
-			}
-			
-			product.setProductId(request.getParameter("productId"));
-			product.setPname(request.getParameter("pname"));
-			product.setUnitPrice(Integer.parseInt(request.getParameter("unitPrice")));
-			product.setDescription(request.getParameter("description"));
-			product.setManufacturer(request.getParameter("manufacturer"));
-			product.setCategory(request.getParameter("category"));
-			product.setUnitsInstock(Long.parseLong(request.getParameter("unitsInstock"))); 
-			product.setPcondition(request.getParameter("pcondition"));
-			 		
+			Product product = new productFactory().makeProduct(new Product(), productId, pname, unitPrice, description, manufacturer, category, unitsInstock, pcondition, file);
 			productService.addProductInfo(product);
 			
 			returnUrl = "redirect:./product";

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhs.dto.Shipping;
+import com.uhs.factory.ordererFactory;
 import com.uhs.service.productService;
 
 @RestController
@@ -18,17 +19,17 @@ public class orderController {
 	
 	@PostMapping
 	public String orderProduct(HttpServletRequest request) {
-		Shipping shipping = new Shipping();
 		String returnUrl = "";
 		
 		try {
-			shipping.setProductId(Long.parseLong(request.getParameter("productId")));
-			shipping.setName(request.getParameter("name"));
-			shipping.setShippingDay(request.getParameter("shippingDay"));
-			shipping.setCountry(request.getParameter("country"));
-			shipping.setZipCode(request.getParameter("zipCode"));
-			shipping.setAddress(request.getParameter("address"));
+			long productId = Long.parseLong(request.getParameter("productId"));
+			String name = request.getParameter("name");
+			String shippingDay = request.getParameter("shippingDay");
+			String country = request.getParameter("country");
+			String zipCode = request.getParameter("zipCode");
+			String address = request.getParameter("address");
 			
+			Shipping shipping = new ordererFactory().makeorderer(new Shipping(), productId, name, shippingDay, country, zipCode, address);
 			productService.addShippingInfo(shipping);
 			
 			returnUrl = "redirect:./orderComplete";
