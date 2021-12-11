@@ -19,7 +19,7 @@
 	  padding: 20px;
 	}
 </style>
-<title>Sign Up</title>
+<title>Find password</title>
 </head>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -27,7 +27,7 @@
 <body>
 	<div class="wrapper">
 		<div class="span3">
-		    <h2>Sign Up</h2>
+		    <h2>Find password</h2>
 		    <form>
 		    <label>First Name</label>
 		    <input id="firstname" type="text" name="firstname" class="span3">
@@ -37,33 +37,23 @@
 		    <input id="email" type="text" name="email" class="span3">
 		    <label>ID</label>
 		    <input id="username" type="text" name="username" class="span3">
-		    <label>Password</label>
-		    <input id="password" type="password" name="password" class="span3">
-		    <a onclick="registUser();" class="btn btn-primary pull-right">Sign up</a> 
-		    <a href="./" class="btn btn-primary pull-right">Back</a>  
+		    <a onclick="findPw();" class="btn btn-primary pull-right">find pw</a> 
+		    <a href="./login" class="btn btn-primary pull-right">Back</a>  
 		    </form>    
 		</div>
 	</div>
 </body>
 </html>
 <script type="text/javascript">
-	function registUser(){					
+	function findPw(){					
 		let firstname = document.querySelector("#firstname").value;
 	    let lastname = document.querySelector("#lastname").value;
 	    let email = document.querySelector("#email").value;
 	    let username = document.querySelector("#username").value;
-	    let password = document.querySelector("#password").value;
-	    	    
-	    const formData = new FormData();
-	    formData.append("firstname", firstname);
-	    formData.append("lastname", lastname);
-	    formData.append("email", email);
-	    formData.append("username", username);
-	    formData.append("password", password);
-		
-		fetch('./api/auth', {
-		    method: 'post',
-		    body: formData,
+
+	    url = "./api/auth?firstname="+firstname+"&lastname="+lastname+"&email="+email+"&id="+username; 
+		fetch(url, {
+		    method: 'get',
 		    headers: {}
 		  })
 		  .then((res) => {

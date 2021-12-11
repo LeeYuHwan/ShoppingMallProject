@@ -27,15 +27,15 @@
     <!-- Login Form -->
     <form>
       <input type="text" id="username" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
       <a id="login" onclick="login();" class="fadeIn fourth">Log In</a>
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
+      <a class="underlineHover" href="./findpw">Forgot Password?</a>
       <br>
-      <a class="underlineHover" href="./sign-up">Sign Up</a>
+      <a class="underlineHover" href="./sign-up">Sign Up</a>     
     </div>
 
   </div>

@@ -461,8 +461,7 @@
     </div>
 
 </div>
-
-<a href="./logout">로그아웃</a>
+<a href="./title">뒤로가기</a>
 </div>
 
 </c:if>
@@ -525,8 +524,8 @@
 
  				toV=-1;
 
- 				alert('Your score: '+document.querySelector('#result').innerHTML);
-
+ 				alert('Your score: '+document.querySelector('#result').innerHTML);	
+ 				registScore();
  			}
 
          }
@@ -542,6 +541,28 @@
  }
 
  toF(toV = 500);
+ 
+ function registScore(){					
+	    let username = '${id}';
+	    let score = document.querySelector('#result').innerHTML;
+	    	    
+	    const formData = new FormData();
+	    formData.append("username", username);
+	    formData.append("score", score);
+		
+		fetch('./api/rank', {
+		    method: 'post',
+		    body: formData,
+		    headers: {}
+		  })
+		  .then((res) => {
+		      return res.json();
+		  })
+		  .then((json) => {
+			  alert(json.message);
+			  location.href = json.returnUrl;
+		  })
+	}
  </script>
 
 </HTML>

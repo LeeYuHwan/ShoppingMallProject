@@ -19,10 +19,26 @@ public class HomeController {
 	public String game(Model model) {				
 		return "home.jsp";
 	}
+	@GetMapping("/title")
+	public String title(Model model) {				
+		return "titleMain.jsp";
+	}
+	@GetMapping("/rank")
+	public String rank(Model model) {				
+		return "rank.jsp";
+	}
 	@GetMapping("/login")
 	public String login(Model model, HttpSession session) {		
 		if(session.getAttribute("id") == null) return "login.jsp";
 		else return "home.jsp";	
+	}
+	@GetMapping("/findpw")
+	public String findPW(Model model) {				
+		return "findPW.jsp";
+	}
+	@GetMapping("/changepw")
+	public String changePW(Model model) {				
+		return "changePW.jsp";
 	}
 	@GetMapping("/logout")
 	public String logout(Model model, HttpSession session) {			
@@ -34,8 +50,10 @@ public class HomeController {
 	public String SignUp(Model model) {		
 		return "sign-up.jsp";
 	}
-	
-	
+	@GetMapping("/delete-member")
+	public String deleteMember(Model model) {		
+		return "deleteMember.jsp";
+	}	
 	@GetMapping("/error")
 	public String error(Model model) {		
 		return "error.jsp";

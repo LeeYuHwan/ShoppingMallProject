@@ -18,50 +18,52 @@
 	  min-height: 100%;
 	  padding: 20px;
 	}
+	.mainDiv {
+	  display: flex;
+	  align-items: center;
+	  flex-direction: column; 
+	  justify-content: center;
+	  width: 100%;
+	  min-height: 100%;
+	}
 </style>
-<title>Sign Up</title>
+<title>Membership Withdrawal</title>
 </head>
 
 <!------ Include the above in your HEAD tag ---------->
 
 <body>
+<c:if test="${empty id}">
+	<div class="mainDiv">
+		<div>로그인이 필요한 서비스 입니다.</div>
+		<a href="./login">뒤로가기</a>
+	</div>
+</c:if>
+<c:if test="${! empty id}">
 	<div class="wrapper">
 		<div class="span3">
-		    <h2>Sign Up</h2>
+		    <h2>Membership Withdrawal</h2>
 		    <form>
-		    <label>First Name</label>
-		    <input id="firstname" type="text" name="firstname" class="span3">
-		    <label>Last Name</label>
-		    <input id="lastname" type="text" name="lastname" class="span3">
-		    <label>Email Address</label>
-		    <input id="email" type="text" name="email" class="span3">
-		    <label>ID</label>
-		    <input id="username" type="text" name="username" class="span3">
 		    <label>Password</label>
 		    <input id="password" type="password" name="password" class="span3">
-		    <a onclick="registUser();" class="btn btn-primary pull-right">Sign up</a> 
-		    <a href="./" class="btn btn-primary pull-right">Back</a>  
+		    <a onclick="withdrawalMember();" class="btn btn-primary pull-right">Membership Withdrawal</a> 
+		    <a href="./title" class="btn btn-primary pull-right">Back</a>  
 		    </form>    
 		</div>
 	</div>
+</c:if>
 </body>
 </html>
 <script type="text/javascript">
-	function registUser(){					
-		let firstname = document.querySelector("#firstname").value;
-	    let lastname = document.querySelector("#lastname").value;
-	    let email = document.querySelector("#email").value;
-	    let username = document.querySelector("#username").value;
+	function withdrawalMember(){
+		let username = '${id}';
 	    let password = document.querySelector("#password").value;
 	    	    
 	    const formData = new FormData();
-	    formData.append("firstname", firstname);
-	    formData.append("lastname", lastname);
-	    formData.append("email", email);
 	    formData.append("username", username);
 	    formData.append("password", password);
 		
-		fetch('./api/auth', {
+		fetch('./api/auth/withdrawal', {
 		    method: 'post',
 		    body: formData,
 		    headers: {}

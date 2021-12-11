@@ -4,13 +4,10 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class authUser {
+public class userRankInfo {
 	private int Id;	
-	private String firstname;
-	private String lastname;
-	private String email;
 	private String username;
-	private String password;
+	private int score;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss")
 	private Date createDate;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss")
@@ -22,35 +19,17 @@ public class authUser {
 	public void setId(int id) {
 		Id = id;
 	}
-	public String getFirstname() {
-		return firstname;
-	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
+	public int getScore() {
+		return score;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setScore(int score) {
+		this.score = score;
 	}
 	public Date getCreateDate() {
 		return createDate;
@@ -63,5 +42,5 @@ public class authUser {
 	}
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
-	}
+	}	
 }
